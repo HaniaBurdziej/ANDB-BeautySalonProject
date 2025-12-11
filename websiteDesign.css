@@ -48,6 +48,26 @@ nav a:hover {
     background-color: #99AA86;
 }
 
+.book-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #e0a3a1;
+    color: #505168ff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 12px;
+    border-radius: 12px;
+    margin-right: auto;
+    margin-left: 20px;
+    border: 2px solid #505168ff;
+}
+
+.calendar-icon {
+    width: 22px;
+    height: 22px;
+}
+
 .content-area {
     margin-top: 120px;
     padding: 40px;
@@ -99,10 +119,17 @@ footer {
     height: 28px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 750px) {
+    nav { 
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+    }
     nav a {
         padding: 8px 14px;
         margin-left: 10px;
+        font-size: 14px;
     }
 
     .content-area {
