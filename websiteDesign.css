@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #D5DABE;
+    color: #333;
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+}
+
+.navbar {
+    position: fixed;
+    top: 5px;
+    width: 100%;
+    background: #B3C0A4;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #505168ff;
+    border-top: 2px solid #505168ff;
+
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 55px;
+    width: auto;
+}
+
+nav a {
+    text-decoration: none;
+    color: #505168ff;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+    padding: 28px 23px;
+    background: #B3C0A4;
+}
+
+nav a:hover {
+    background-color: #99AA86;
+}
+
+.content-area {
+    margin-top: 120px;
+    padding: 40px;
+}
+
+.about h2, .contact h2 {
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.member img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.contact p {
+    margin-bottom: 8px;
+}
+
+.map-container iframe {
+    width: 45%;
+    height: 500px;
+    border: 0;
+    margin-top: 15px;
+    margin-left: 50%;
+}
+
+footer {
+    background: #B3C0A4;
+    padding: 20px 15px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: 2px solid #505168ff;
+    flex-wrap: wrap;
+}
+
+.footer-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 10px;
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+}
+
+.icon {
+    width: 28px;
+    height: 28px;
+}
+
+@media (max-width: 768px) {
+    nav a {
+        padding: 8px 14px;
+        margin-left: 10px;
+    }
+
+    .content-area {
+        padding: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
