@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beauty Salon</title>
+    <link rel="stylesheet" href="websiteDesign.css" />
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo-container">
+            <img src="logo.svg" class="logo-img" alt="Salon Logo">
+        </div>
+        <nav>
+            <a href="#about">ABOUT US</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+    </header>
+
+    <section class="content-area">
+        <section id="booking" class="booking">
+            <h2>BOOK AN APPOINTMENT</h2>
+
+            <form class="booking form" action="confirmationPage.html">
+
+                <div class="form-booking">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="first_name" required />
+                </div>
+
+                <div class="form-booking">
+                    <label for="surname">Surname:</label>
+                    <input type="text" id="surname" name="last_name" required />
+                </div>
+
+                <div class="form-booking">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+
+                <div class="form-booking">
+                    <label for="phone">Phone number:</label>
+                    <input type="tel" id="phone" name="phone" required />
+                </div>
+
+                <div class="form-booking">
+                    <label for="service">Choose service from the list:</label>
+                    <select id="service" name="service" required>
+                        <option value="">-- select service --</option>
+                        <option value="1">Haircut</option>
+                        <option value="2">Hair coloring</option>
+                        <option value="3">Skin care treatment</option>
+                        <option value="4">Manicure</option>
+                        <option value="5">Event makeup</option>
+                    </select>
+                </div>
+
+                <div class="form-booking">
+                    <label for="date">Preferred date:</label>
+                    <input type="date" id="date" name="date" required />
+                </div>
+
+                <div class="form-booking">
+                    <label for="time">Preferred time:</label>
+                    <input type="time" id="time" name="time" required />
+                </div>
+
+                <button type="submit" class="submit-btn">SUBMIT</button>
+            </form>
+        </section>
+    </section>
+
+    <footer>
+        <div class="footer-item">
+            <img src="phone.svg" class="icon"> +48 111 111 111
+        </div>
+        <div class="footer-item">
+            <img src="mail.svg" class="icon"> beautysalon@gmail.com
+        </div>
+        <div class="footer-item">
+            <img src="location.svg" class="icon"> Dobra 1, 80‑746 Gdańsk
+        </div>
+    </footer>
+</body>
+</html>
