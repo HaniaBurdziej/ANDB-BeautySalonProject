@@ -22,7 +22,7 @@
         <section id="booking" class="booking">
             <h2>BOOK AN APPOINTMENT</h2>
 
-            <form class="booking form" action="confirmationPage.html">
+            <form id="booking-form" class="booking form">
 
                 <div class="form-booking">
                     <label for="name">Name:</label>
@@ -52,7 +52,7 @@
                         <option value="2">Hair coloring</option>
                         <option value="3">Skin care treatment</option>
                         <option value="4">Manicure</option>
-                        <option value="5">Event makeup</option>
+                        <option value="5">Massage</option>
                     </select>
                 </div>
 
@@ -82,5 +82,87 @@
             <img src="location.svg" class="icon"> Dobra 1, 80‑746 Gdańsk
         </div>
     </footer>
+
+    <script>
+        const API_KEY = "sb_publishable_61jx-Mxc7vxNhKK2818JPQ_KssN7y2Q";
+        const BASE_URL = "https://lumwjoeyybjtnuhmwxst.supabase.co/rest/v1";
+
+        const headers = {
+            "apikey": API_KEY,
+            "Authorization": "Bearer " + API_KEY,
+            "Content-Type": "application/json"
+        };
+
+        // this starts when the form is submitted
+        document.getElementById("booking-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            // collecting values from the form
+            const first_name = document.getElementById("name").value;
+            const last_name = document.getElementById("surname").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const service_id = document.getElementById("service").value;
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+
+            try {
+                // 1. getting customer by email
+                let res = await fetch(
+                    `${BASE_URL}/customers?email=eq.${email}`, // filter by email
+                    { headers }
+                );
+
+                let customers = await res.json();   // array of customers
+                let customer_id;    // to be assigned later
+
+                // 2. if customer does not exist, create it
+                if (customers.length === 0) {   // = no customer found
+                    await fetch(`${BASE_URL}/customers`, {  // create customer
+                        method: "POST",     // it is a POST request
+                        headers,
+                        body: JSON.stringify({  // body with customer data
+                            first_name,
+                            last_name,
+                            phone,
+                            email
+                        })
+                    });
+
+                    // 3. get the newly created customer to obtain customer_id
+                    res = await fetch(
+                        `${BASE_URL}/customers?email=eq.${email}`,
+                        { headers }
+                    );
+                    customers = await res.json();
+                }
+
+                customer_id = customers[0].customer_id;
+
+                // 4. create appointment
+                await fetch(`${BASE_URL}/appointments`, {   // fetch = get/post data
+                    method: "POST",
+                    headers,
+                    body: JSON.stringify({
+                        customer_id: customer_id,
+                        worker_id: null,          // bc for now we dont have them in database
+                        service_id: Number(service_id),
+                        appointment_date: date,
+                        start_time: time,
+                        status: "booked"
+                    })
+                });
+
+                // 5. go to confirmation page
+                window.location.href = "confirmationPage.html";
+
+            } catch (error) {
+                console.error("Booking failed:", error);
+                alert("Something went wrong. Please try again.");
+            }
+        });
+    </script>
+
+
 </body>
 </html>
