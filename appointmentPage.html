@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beauty Salon</title>
+    <link rel="stylesheet" href="websiteDesign.css" />
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo-container">
+            <img src="logo.svg" class="logo-img" alt="Salon Logo">
+        </div>
+        <nav>
+            <a href="#about">ABOUT US</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+    </header>
+
+    <section class="content-area">
+        <section id="booking" class="booking">
+            <h2>BOOK AN APPOINTMENT</h2>
+
+            <form id="booking-form" class="booking form">
+
+                <div class="form-booking">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="first_name" required />
+                </div>
+
+                <div class="form-booking">
+                    <label for="surname">Surname:</label>
+                    <input type="text" id="surname" name="last_name" required />
+                </div>
+
+                <div class="form-booking">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+
+                <div class="form-booking">
+                    <label for="phone">Phone number:</label>
+                    <input type="tel" id="phone" name="phone" required />
+                </div>
+
+                <div class="form-booking">
+                    <label for="service">Choose service from the list:</label>
+                    <select id="service" name="service" required>
+                        <option value="">-- select service --</option>
+                        <option value="1">Haircut</option>
+                        <option value="2">Hair coloring</option>
+                        <option value="3">Skin care treatment</option>
+                        <option value="4">Manicure</option>
+                        <option value="5">Massage</option>
+                    </select>
+                </div>
+
+                <div class="form-booking">
+                    <label for="date">Preferred date:</label>
+                    <input type="date" id="date" name="date" required />
+                </div>
+
+                <div class="form-booking">
+                    <label for="time">Preferred time:</label>
+                    <input type="time" id="time" name="time" required />
+                </div>
+
+                <button type="submit" class="submit-btn">SUBMIT</button>
+            </form>
+        </section>
+    </section>
+
+    <footer>
+        <div class="footer-item">
+            <img src="phone.svg" class="icon"> +48 111 111 111
+        </div>
+        <div class="footer-item">
+            <img src="mail.svg" class="icon"> beautysalon@gmail.com
+        </div>
+        <div class="footer-item">
+            <img src="location.svg" class="icon"> Dobra 1, 80‑746 Gdańsk
+        </div>
+    </footer>
+
+    <script>
+        const API_KEY = "sb_publishable_61jx-Mxc7vxNhKK2818JPQ_KssN7y2Q";
+        const BASE_URL = "https://lumwjoeyybjtnuhmwxst.supabase.co/rest/v1";
+
+        const headers = {
+            "apikey": API_KEY,
+            "Authorization": "Bearer " + API_KEY,
+            "Content-Type": "application/json"
+        };
+
+        // this starts when the form is submitted
+        document.getElementById("booking-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            // collecting values from the form
+            const first_name = document.getElementById("name").value;
+            const last_name = document.getElementById("surname").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const service_id = document.getElementById("service").value;
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+
+            try {
+                // 1. getting customer by email
+                let res = await fetch(
+                    `${BASE_URL}/customers?email=eq.${email}`, // filter by email
+                    { headers }
+                );
+
+                let customers = await res.json();   // array of customers
+                let customer_id;    // to be assigned later
+
+                // 2. if customer does not exist, create it
+                if (customers.length === 0) {   // = no customer found
+                    await fetch(`${BASE_URL}/customers`, {  // create customer
+                        method: "POST",     // it is a POST request
+                        headers,
+                        body: JSON.stringify({  // body with customer data
+                            first_name,
+                            last_name,
+                            phone,
+                            email
+                        })
+                    });
+
+                    // 3. get the newly created customer to obtain customer_id
+                    res = await fetch(
+                        `${BASE_URL}/customers?email=eq.${email}`,
+                        { headers }
+                    );
+                    customers = await res.json();
+                }
+
+                customer_id = customers[0].customer_id;
+
+                // 4. create appointment
+                await fetch(`${BASE_URL}/appointments`, {   // fetch = get/post data
+                    method: "POST",
+                    headers,
+                    body: JSON.stringify({
+                        customer_id: customer_id,
+                        worker_id: null,          // bc for now we dont have them in database
+                        service_id: Number(service_id),
+                        appointment_date: date,
+                        start_time: time,
+                        status: "booked"
+                    })
+                });
+
+                // 5. go to confirmation page
+                window.location.href = "confirmationPage.html";
+
+            } catch (error) {
+                console.error("Booking failed:", error);
+                alert("Something went wrong. Please try again.");
+            }
+        });
+    </script>
+
+
+</body>
+</html>
