@@ -1,5 +1,3 @@
-/* BASIC STYLES */
-
 * {
     margin: 0;
     padding: 0;
@@ -41,26 +39,6 @@ nav a:hover {
     background-color: #99AA86;
 }
 
-.book-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #e0a3a1;
-    color: #505168ff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 12px;
-    border-radius: 12px;
-    margin-right: auto;
-    margin-left: 20px;
-    border: 2px solid #505168ff;
-}
-
-.calendar-icon {
-    width: 22px;
-    height: 22px;
-}
-
 .content-area {
     margin-top: 0px;
     padding: 20px;
@@ -73,11 +51,6 @@ nav a:hover {
     font-weight: bold;
     color: #505168ff;
 
-}
-
-.member img {
-    width: 100%;
-    border-radius: 12px;
 }
 
 .contact {
@@ -125,18 +98,6 @@ footer {
     font-family: 'Georgia', serif;
     text-align: center;
     font-size: 18px;
-}
-
-.content-area {
-    margin-top: 120px;
-    padding: 40px;
-}
-
-@media (max-width: 750px) {
-.icon {
-    width: 28px;
-    height: 28px;
-    margin-right: 5px;
 }
 
 .intro-section {
@@ -233,6 +194,131 @@ footer {
     margin-bottom: 10px;
 }
 
+/* BUTTONS */
+
+.book-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #e0a3a1;
+    color: #505168ff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 12px;
+    border-radius: 12px;
+    margin-right: auto;
+    margin-left: 20px;
+    border: 2px solid #505168ff;
+}
+
+.submit-btn, .back-home-btn {
+    display: block;
+    margin: 25px auto 0;
+    padding: 10px 12px;
+    width: fit-content;
+    background: #e0a3a1;
+    color: #505168ff;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 12px;
+    border: 2px solid #505168ff;
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.submit-btn:hover, .back-home-btn:hover, .book-btn:hover {
+    background: #cd8987ff;
+    color: white;
+}
+
+/* TEXT STYLES */
+
+.about h2, .contact h2{
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.booking h2, .confirmation h2 {
+    margin-top: 80px;
+    margin-bottom: 15px;
+    font-size: 28px;
+    color: #505168ff;
+    text-align: center;
+}
+
+.contact p {
+    margin-bottom: 8px;
+}
+
+.confirmation p {
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+/* ADDITIONAL STYLES */
+
+.member img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.calendar-icon {
+    width: 22px;
+    height: 22px;
+}
+
+.icon {
+    width: 28px;
+    height: 28px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 55px;
+    width: auto;
+}
+
+/* BOOKING FORM */
+
+.booking form {
+    background: #B3C0A4;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #505168ff;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: 'Georgia', serif;
+}
+
+.form-booking {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-booking label {
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #505168ff;
+}
+
+.booking input,
+.booking select {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #505168ff;
+    border-radius: 10px;
+    background: #eaefd3ff; 
+    font-family: 'Georgia', serif;
+}
+
+@media (max-width: 750px) {
+
     nav { 
         display: flex;
         flex-direction: column;
@@ -301,134 +387,4 @@ footer {
 
 
     }
-}
-
-/* BUTTONS */
-
-.book-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #e0a3a1;
-    color: #505168ff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 12px;
-    border-radius: 12px;
-    margin-right: auto;
-    margin-left: 20px;
-    border: 2px solid #505168ff;
-}
-
-.submit-btn, .back-home-btn {
-    display: block;
-    margin: 25px auto 0;
-    padding: 10px 12px;
-    width: fit-content;
-    background: #e0a3a1;
-    color: #505168ff;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 12px;
-    border: 2px solid #505168ff;
-    font-family: 'Georgia', serif;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-.submit-btn:hover, .back-home-btn:hover, .book-btn:hover {
-    background: #cd8987ff;
-    color: white;
-}
-
-/* TEXT STYLES */
-
-.about h2, .contact h2{
-    margin-bottom: 15px;
-    font-size: 28px;
-}
-
-.booking h2, .confirmation h2 {
-    margin-bottom: 15px;
-    font-size: 28px;
-    color: #505168ff;
-    text-align: center;
-}
-
-.contact p {
-    margin-bottom: 8px;
-}
-
-.confirmation p {
-    margin-bottom: 8px;
-    text-align: center;
-}
-
-/* ADDITIONAL STYLES */
-
-.map-container iframe {
-    width: 45%;
-    height: 500px;
-    border: 0;
-    margin-top: 15px;
-    margin-left: 50%;
-}
-
-.member img {
-    width: 100%;
-    border-radius: 12px;
-}
-
-.calendar-icon {
-    width: 22px;
-    height: 22px;
-}
-
-.icon {
-    width: 28px;
-    height: 28px;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-}
-
-.logo-img {
-    height: 55px;
-    width: auto;
-}
-
-/* BOOKING FORM */
-
-.booking form {
-    background: #B3C0A4;
-    padding: 30px;
-    border-radius: 10px;
-    border: 2px solid #505168ff;
-    max-width: 600px;
-    margin: 0 auto;
-    font-family: 'Georgia', serif;
-}
-
-.form-booking {
-    margin-bottom: 18px;
-    display: flex;
-    flex-direction: column;
-}
-
-.form-booking label {
-    font-weight: bold;
-    margin-bottom: 6px;
-    color: #505168ff;
-}
-
-.booking input,
-.booking select {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #505168ff;
-    border-radius: 10px;
-    background: #eaefd3ff; 
-    font-family: 'Georgia', serif;
 }
